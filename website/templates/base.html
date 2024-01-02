@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-0 m-0 bg-slate-200">
+    {% include 'navbar.html' %}
+    <div id="container" class="h-fit p-2">
+      {% if messages %}
+        {% for message in messages %}
+          <div role="alert" class="relative flex w-full px-4 py-4 text-base text-gray-900 rounded-lg font-regular bg-gray-900/10">
+            <div class="mr-12 flex justify-between w-full text-sm">
+              <p>{{ message }}</p>
+              <button type="button" class="btn-close" aria-label="Close">X</button>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  <script>
+    const btnClose = document.querySelectorAll('.btn-close');
+    btnClose.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.target.parentElement.parentElement.remove();
+      });
+    });
+  </script>
+  </body>
+</html>
