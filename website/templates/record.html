@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="flex flex-col gap-2">
+    <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm bg-white">
+      <dl class="-my-3 divide-y divide-gray-100 text-sm">
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">First Name</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.first_name }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Last Name</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.last_name }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Email</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.email }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Phone</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.phone }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Address</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.address }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">City</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.city }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">State</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.state }}</dd>
+        </div>
+
+        <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt class="font-medium text-gray-900">Zipcode</dt>
+          <dd class="text-gray-700 sm:col-span-2">{{ record.zip_code }}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <span class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm w-fit">
+      <button class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:relative">
+        <a href="{% url 'home' %}">Back</a>
+      </button>
+
+      <button class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:relative">
+        <a href="{% url 'update_record' record.id %}">Edit</a>
+      </button>
+
+      <button class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-red-100 focus:relative" onclick="return confirm('Are you sure you want to delete this record?')">
+        <a href="{% url 'delete_record' record.id %}">Delete</a>
+      </button>
+    </span>
+  </div>
+{% endblock %}

@@ -2,7 +2,62 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <div>Main content</div>
+    <div class="p-0">
+      {% if records %}
+      <div class="relative my-2 p-0 flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <table class="w-full text-left table-auto min-w-max">
+          <thead>
+            <tr>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">ID</p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">Name</p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">Phone</p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">Email</p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">Created At</p>
+              </th>
+              <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"></p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for record in records %}
+                <tr class="even:bg-blue-gray-50/50">
+                  <td class="p-4 border-b border-blue-gray-50">
+                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.id}}</p>
+                  </td>
+                  <td class="p-4 border-b border-blue-gray-50">
+                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">{{record.first_name}} {{record.last_name}}</a>
+                  </td>
+                  <td class="p-4 border-b border-blue-gray-50">
+                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.phone}}</p>
+                  </td>
+                  <td class="p-4 border-b border-blue-gray-50">
+                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.email}}</p>
+                  </td>
+                  <td class="p-4 border-b border-blue-gray-50">
+                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.created_at}}</p>
+                  </td>
+                  <td class="p-4 border-b border-blue-gray-50">
+                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">Edit</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      {% else %}
+        <p>No records</p>
+      {% endif %}
+    </div>
   {% else %}
     <div class="p-28 w-full h-full flex justify-center">
       <form method="POST" action="{% url 'home' %}">

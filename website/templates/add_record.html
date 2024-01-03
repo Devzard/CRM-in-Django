@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="p-28 pt-10 w-full h-full flex justify-center">
+    <form method="POST" action="{% url 'add_record' %}">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="my-10 p-2 bg-red-50 text-sm relative flex flex-col text-gray-700 shadow-md w-96 rounded-xl bg-clip-border">
+          <ul>
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>
+                  <p class="text-black text-left p-2 m-1 bg-white rounded-xl">{{ error }}</p>
+                </li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>ß
+      {% endif %}
+
+      <div class="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
+        <div class="relative grid mx-4 mb-4 -mt-6 overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-tr from-gray-900 to-gray-800 bg-clip-border shadow-gray-900/20">
+          <h3 class="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-white">Add record</h3>
+        </div>
+        <div class="flex flex-col gap-4 p-6">{{ form.as_p }}</div>
+        <div class="p-6 pt-0">
+          <button class="block w-full select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

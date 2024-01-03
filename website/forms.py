@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Record
 
 class SignUpForm(UserCreationForm):
     input_field_class = 'w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
@@ -30,3 +31,20 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs['placeholder'] = ' '
         self.fields['password2'].label = 'Confirm Password'
         self.fields['password2'].help_text = '<ul class="text-xs text-slate-500"><li>Enter the same password as before, for verification.</li></ul>'
+
+
+class AddRecordForm(forms.ModelForm):
+    input_field_class = 'w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+
+    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    phone = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    email = forms.CharField(max_length=50, widget=forms.EmailInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    address = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    city = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    state = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+    zip_code = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class':f'{input_field_class}', 'placeholder':' '}))
+
+    class Meta:
+        model = Record
+        exclude = ("user",)
