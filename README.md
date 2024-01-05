@@ -2,6 +2,12 @@
 CRM app built with Django and sqlite as database.
 Tailwindcss used for styling
 
+![screenshot1](demo/image1.png)
+![screenshot2](demo/image2.png)
+![screenshot3](demo/image3.png)
+![screenshot4](demo/image4.png)
+
+
 Features : 
 - register user
 - login user
