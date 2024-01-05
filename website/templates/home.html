@@ -2,9 +2,9 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <div class="p-0">
+    <div class="p-0 flex flex-col items-center">
       {% if records %}
-      <div class="relative my-2 p-0 flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+      <div class="relative my-2 p-0 flex flex-col w-full max-w-screen-md h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
         <table class="w-full text-left table-auto min-w-max">
           <thead>
             <tr>
@@ -32,22 +32,22 @@
                 {% for record in records %}
                 <tr class="even:bg-blue-gray-50/50">
                   <td class="p-4 border-b border-blue-gray-50">
-                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.id}}</p>
+                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">{{record.id}}</a>
                   </td>
                   <td class="p-4 border-b border-blue-gray-50">
                     <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">{{record.first_name}} {{record.last_name}}</a>
                   </td>
                   <td class="p-4 border-b border-blue-gray-50">
-                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.phone}}</p>
+                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">{{record.phone}}</a>
                   </td>
                   <td class="p-4 border-b border-blue-gray-50">
-                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.email}}</p>
+                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">{{record.email}}</a>
                   </td>
                   <td class="p-4 border-b border-blue-gray-50">
-                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">{{record.created_at}}</p>
+                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">{{record.created_at}}</a>
                   </td>
                   <td class="p-4 border-b border-blue-gray-50">
-                    <a href="{% url 'record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">Edit</a>
+                    <a href="{% url 'update_record' record.id %}" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">Edit</a>
                   </td>
                 </tr>
                 {% endfor %}
